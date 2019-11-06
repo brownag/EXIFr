@@ -40,9 +40,6 @@
       endian = endian
     )
 
-
-    #
-
     tag_name <- .tag_number_to_tag_name(tag_number)
     tag_value <- switch(tag_type,
       # 1 Byte
@@ -73,28 +70,31 @@
         size = 4
       )
     , # 5 Rational
-      paste(
-        readBin(
-          all_bytes[(TIFF_offset + data_position + 1):
-                      (TIFF_offset + data_position + 4)],
-          "integer",
-          endian = endian,
-          size = 4
-        ),
-        readBin(
-          all_bytes[(TIFF_offset + data_position + 5):
-                      (TIFF_offset + data_position + 8)],
-          "integer",
-          endian = endian,
-          size = 4
-        ),
-        sep = "/"
-      )
+      paste(unlist(lapply(0:(data_length - 1), function(i) {
+        paste(
+          readBin(
+            all_bytes[(TIFF_offset + data_position + 1 + (i * 8)):
+                        (TIFF_offset + data_position + 4 + (i * 8))],
+            "integer",
+            endian = endian,
+            size = 4
+          ),
+          readBin(
+            all_bytes[(TIFF_offset + data_position + 5 + (i * 8)):
+                        (TIFF_offset + data_position + 8 + (i * 8))],
+            "integer",
+            endian = endian,
+            size = 4
+          ),
+          sep = "/"
+        )
+      })), collapse=" ")
     )
 
     IFD_start <- IFD_start + 12
 
-    if (tag_number == 34665) {
+    # these are the pointers to EXIF and GPS IFDs
+    if (tag_number %in% c(34665, 34853)) {
       #http://www.awaresystems.be/imaging/tiff/tifftags/subifds.html
       # Sub IFD offsets are relative to the TIFF header
       tag_list <- append(
@@ -148,19 +148,56 @@ supported_tags <- function() {
 }
 
 .supported_tags <- function() {
-  pairs <- list()
-  pairs[[ "33434" ]] <- "ExposureTime"
-  pairs[[ "37378" ]] <- "ApertureValue"
-  pairs[[ "37386" ]] <- "FocalLength"
-  pairs[[ "34855" ]] <- "ISOSpeedRatings"
+  # code for constructing dput-ed hard-code list
+  # z <- read.csv("data/base_TIFF_tags.csv", stringsAsFactors = F)
+  # pairs[as.character(z$code)] <- as.character(z$name)
+  # pairs <- pairs[names(unlist(pairs))[order(as.character(unlist(pairs)))]]
 
-  pairs[[ "40963" ]] <- "PixelYDimension"
-  pairs[[ "40962" ]] <- "PixelXDimension"
-
-  pairs[[ "306" ]] <- "DateTime"
-  pairs[[ "271" ]] <- "Make"
-  pairs[[ "272" ]] <- "Model"
-
+  pairs <- list(`37378` = "ApertureValue", `315` = "Artist", `258` = "BitsPerSample",
+                `37379` = "BrightnessValue", `265` = "CellLength", `264` = "CellWidth",
+                `41730` = "CFAPattern", `320` = "ColorMap", `40961` = "ColorSpace",
+                `37121` = "ComponentsConfiguration", `37122` = "CompressedBitsPerPixel",
+                `259` = "Compression", `41992` = "Contrast", `33432` = "Copyright",
+                `41985` = "CustomRendered", `306` = "DateTime", `36868` = "DateTimeDigitized",
+                `36867` = "DateTimeOriginal", `41995` = "DeviceSettingDescription",
+                `41988` = "DigitalZoomRatio", `36864` = "ExifVersion", `37380` = "ExposureBiasValue",
+                `41493` = "ExposureIndex", `41986` = "ExposureMode", `34850` = "ExposureProgram",
+                `33434` = "ExposureTime", `338` = "ExtraSamples", `41728` = "FileSource",
+                `266` = "FillOrder", `37385` = "Flash", `41483` = "FlashEnergy",
+                `40960` = "FlashpixVersion", `33437` = "FNumber", `37386` = "FocalLength",
+                `41989` = "FocalLengthIn35mmFilm", `41488` = "FocalPlaneResolutionUnit",
+                `41486` = "FocalPlaneXResolution", `41487` = "FocalPlaneYResolution",
+                `289` = "FreeByteCounts", `288` = "FreeOffsets", `41991` = "GainControl",
+                `6` = "GPSAltitude", `5` = "GPSAltitudeRef", `28` = "GPSAreaInformation",
+                `29` = "GPSDateStamp", `24` = "GPSDestBearing", `23` = "GPSDestBearingRef",
+                `26` = "GPSDestDistance", `25` = "GPSDestDistanceRef", `20` = "GPSDestLatitude",
+                `19` = "GPSDestLatitudeRef", `22` = "GPSDestLongitude", `21` = "GPSDestLongitudeRef",
+                `30` = "GPSDifferential", `11` = "GPSDOP", `17` = "GPSImgDirection",
+                `16` = "GPSImgDirectionRef", `2` = "GPSLatitude", `1` = "GPSLatitudeRef",
+                `4` = "GPSLongitude", `3` = "GPSLongitudeRef", `18` = "GPSMapDatum",
+                `10` = "GPSMeasureMode", `27` = "GPSProcessingMethod", `8` = "GPSSatellites",
+                `13` = "GPSSpeed", `12` = "GPSSpeedRef", `9` = "GPSStatus",
+                `7` = "GPSTimeStamp", `15` = "GPSTrack", `14` = "GPSTrackRef",
+                `0` = "GPSVersionID", `291` = "GrayResponseCurve", `290` = "GrayResponseUnit",
+                `316` = "HostComputer", `270` = "ImageDescription", `257` = "ImageLength",
+                `42016` = "ImageUniqueID", `256` = "ImageWidth", `34855` = "ISOSpeedRatings",
+                `37384` = "LightSource", `271` = "Make", `37500` = "MakerNote",
+                `37381` = "MaxApertureValue", `281` = "MaxSampleValue", `37383` = "MeteringMode",
+                `280` = "MinSampleValue", `272` = "Model", `254` = "NewSubfileType",
+                `34856` = "OECF", `274` = "Orientation", `262` = "PhotometricInterpretation",
+                `40962` = "PixelXDimension", `40963` = "PixelYDimension",
+                `284` = "PlanarConfiguration", `40964` = "RelatedSoundFile",
+                `296` = "ResolutionUnit", `278` = "RowsPerStrip", `277` = "SamplesPerPixel",
+                `41993` = "Saturation", `41990` = "SceneCaptureType", `41729` = "SceneType",
+                `41495` = "SensingMethod", `41994` = "Sharpness", `37377` = "ShutterSpeedValue",
+                `305` = "Software", `41484` = "SpatialFrequencyResponse",
+                `34852` = "SpectralSensitivity", `279` = "StripByteCounts",
+                `273` = "StripOffsets", `255` = "SubfileType", `37396` = "SubjectArea",
+                `37382` = "SubjectDistance", `41996` = "SubjectDistanceRange",
+                `41492` = "SubjectLocation", `37520` = "SubsecTime", `37522` = "SubsecTimeDigitized",
+                `37521` = "SubsecTimeOriginal", `263` = "Threshholding",
+                `37510` = "UserComment", `41987` = "WhiteBalance", `282` = "XResolution",
+                `283` = "YResolution")
   pairs
 
 }
