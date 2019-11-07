@@ -103,22 +103,23 @@ rationalDMS_to_decimal(latlng)
 ## Problems : 
 Please report any bugs or feature requests to the [GitHub issue tracker](https://github.com/brownag/EXIFr/issues).
 
-Any questions about the original [EXIFr](https://github.com/cmartin/EXIFr/) package should be directed to to <charles.martin1@uqtr.ca>
+Any questions about the original [EXIFr](https://github.com/cmartin/EXIFr/) package should be directed to to @cmartin : <charles.martin1@uqtr.ca>
 
-Matters pertaining to maintenance of the @brownag [EXIFr](https://github.com/brownag/EXIFr/) fork can contact <andrew.g.brown@usda.gov> or through the issue tracker linked above.
+Matters pertaining to maintenance of this [EXIFr](https://github.com/brownag/EXIFr/) fork can contact @brownag via the issue tracker linked above.
 
 ## More information 
 
-An extensive list of TIFF tags, parsing, and the the TIFF / EXIF standards can be found here:
+Info on EXIF tags, parsing JPEG files, and the the TIFF / EXIF standards can be found here:
 
 * [https://www.awaresystems.be/imaging/tiff/tifftags.html](https://www.awaresystems.be/imaging/tiff/tifftags.html)
 * [http://www.exiv2.org/Exif2-2.PDF](http://www.exiv2.org/Exif2-2.PDF)
+* [https://www.sno.phy.queensu.ca/~phil/exiftool/TagNames/EXIF.html](https://www.sno.phy.queensu.ca/~phil/exiftool/TagNames/EXIF.html)
 * [http://code.flickr.net/2012/06/01/parsing-exif-client-side-using-javascript-2/](http://code.flickr.net/2012/06/01/parsing-exif-client-side-using-javascript-2/)
 * [http://www.media.mit.edu/pia/Research/deepview/exif.html](http://www.media.mit.edu/pia/Research/deepview/exif.html)
 
 
 ## Citation
-If this code is useful to you, please cite the original package, whose robust framework was expanded on in this fork: 
+If this code is useful to you, please cite the original package. @cmartin's robust framework was expanded on in this fork: 
 
 ```
 Charles A. Martin (2015). EXIFr: Natively read EXIF tags from R. R package version 0.0.0.9004. https://github.com/cmartin/EXIFr. DOI:10.5281/zenodo.34691

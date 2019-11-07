@@ -143,8 +143,38 @@
 }
 
 #' List EXIF tags currently supported by this package.
-#'
+#' @description Currently supported tags include:
+#' ApertureValue, Artist, BitsPerSample, BrightnessValue, CellLength,
+#' CellWidth, CFAPattern, ColorMap, ColorSpace, ComponentsConfiguration,
+#' CompressedBitsPerPixel, Compression, Contrast, Copyright, CustomRendered,
+#' DateTime, DateTimeDigitized, DateTimeOriginal, DeviceSettingDescription,
+#' DigitalZoomRatio, ExifVersion, ExposureBiasValue, ExposureIndex,
+#' ExposureMode, ExposureProgram, ExposureTime, ExtraSamples, FileSource,
+#' FillOrder, Flash, FlashEnergy, FlashpixVersion, FNumber, FocalLength,
+#' FocalLengthIn35mmFilm, FocalPlaneResolutionUnit, FocalPlaneXResolution,
+#' FocalPlaneYResolution, FreeByteCounts, FreeOffsets, GainControl,
+#' GPSAltitude, GPSAltitudeRef, GPSAreaInformation, GPSDateStamp,
+#' GPSDestBearing, GPSDestBearingRef, GPSDestDistance, GPSDestDistanceRef,
+#' GPSDestLatitude, GPSDestLatitudeRef, GPSDestLongitude, GPSDestLongitudeRef,
+#' GPSDifferential, GPSDOP, GPSImgDirection, GPSImgDirectionRef, GPSLatitude,
+#' GPSLatitudeRef, GPSLongitude, GPSLongitudeRef, GPSMapDatum, GPSMeasureMode,
+#' GPSProcessingMethod, GPSSatellites, GPSSpeed, GPSSpeedRef, GPSStatus,
+#' GPSTimeStamp, GPSTrack, GPSTrackRef, GPSVersionID, GrayResponseCurve,
+#' GrayResponseUnit, HostComputer, ImageDescription, ImageLength,
+#' ImageUniqueID, ImageWidth, ISOSpeedRatings, LightSource, Make,
+#' MakerNote, MaxApertureValue, MaxSampleValue, MeteringMode, MinSampleValue,
+#' Model, NewSubfileType, OECF, OffsetTime, OffsetTimeDigitized,
+#' OffsetTimeOriginal,  Orientation, PhotometricInterpretation,
+#' PixelXDimension, PixelYDimension, PlanarConfiguration, RelatedSoundFile,
+#' ResolutionUnit, RowsPerStrip, SamplesPerPixel, Saturation,
+#' SceneCaptureType, SceneType, SensingMethod, Sharpness, ShutterSpeedValue,
+#' Software, SpatialFrequencyResponse, SpectralSensitivity, StripByteCounts,
+#' StripOffsets, SubfileType, SubjectArea, SubjectDistance,
+#' SubjectDistanceRange, SubjectLocation, SubsecTime, SubsecTimeDigitized,
+#' SubsecTimeOriginal, Threshholding, UserComment, WhiteBalance, XResolution,
+#' YResolution.
 #' @return A vector of EXIF tag names.
+#' @author Charles Martin
 #' @example /inst/examples/supported.Example.R
 #' @export
 supported_tags <- function() {
@@ -188,7 +218,8 @@ supported_tags <- function() {
                 `37384` = "LightSource", `271` = "Make", `37500` = "MakerNote",
                 `37381` = "MaxApertureValue", `281` = "MaxSampleValue", `37383` = "MeteringMode",
                 `280` = "MinSampleValue", `272` = "Model", `254` = "NewSubfileType",
-                `34856` = "OECF", `274` = "Orientation", `262` = "PhotometricInterpretation",
+                `34856` = "OECF", `36880` = "OffsetTime", `36882` = "OffsetTimeDigitized",
+                `36881` = "OffsetTimeOriginal", `274` = "Orientation", `262` = "PhotometricInterpretation",
                 `40962` = "PixelXDimension", `40963` = "PixelYDimension",
                 `284` = "PlanarConfiguration", `40964` = "RelatedSoundFile",
                 `296` = "ResolutionUnit", `278` = "RowsPerStrip", `277` = "SamplesPerPixel",
@@ -227,7 +258,7 @@ supported_tags <- function() {
 #' @return A list-based S3 object of class exifData containing the tags and their values.
 #' @example /inst/examples/readexif.Example.R
 #' @export
-#' @seealso \code{\link{rational_to_numeric}}
+#' @seealso \code{\link{rational_to_numeric}, \link{rationalDMS_to_numeric}}
 read_exif_tags <- function(file_path) {
   con <- file(file_path, "rb")
   rm(file_path)
