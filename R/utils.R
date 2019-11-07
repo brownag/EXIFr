@@ -7,6 +7,17 @@
 #' @export
 #' @seealso \code{\link{read_exif_tags}}
 rational_to_numeric <- function(x) {
-  p = strsplit(x,"/")
-  as.numeric(unlist(p)[1]) / as.numeric(unlist(p)[2])
+  unlist(lapply(x, function(xx) {
+    p = strsplit(xx, "/")
+    as.numeric(unlist(p)[1]) / as.numeric(unlist(p)[2])}))
+}
+
+#' @export
+rationalDMS_to_decimal <- function(dms, .split = " ") {
+  comp <- lapply(dms, function(d) {
+    unlist(lapply(strsplit(d, fixed = TRUE, .split)[[1]],
+                  EXIFr::rational_to_numeric))
+  })
+  res <- lapply(comp, function(i) { i[[1]] + i[[2]]/60 + i[[3]]/3600 })
+  return(as.numeric(res))
 }
