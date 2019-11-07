@@ -1,8 +1,8 @@
 # EXIFr : Natively read EXIF tags from R
 
-This package natively reads EXIF tags from digital (JPEG) images. It does not rely on any external libraries or binary executables. Values are returned as stored in the image file. EXIF read capability is unique in _native_ R, so this package may be particularly useful in workflows where minimixing external, non-R dependencies is desirable.
+This package natively reads EXIF tags from digital (JPEG) images. It does not rely on any external libraries or binary executables. Values are returned as stored in the image file. EXIF read capability in _native_ R will be useful for minimizing external, non-R dependencies.
 
-**NOTE:** `EXIFr` is NOT the same package as `exifr`, which can be found on CRAN. `exifr` relies on either an external Perl library or a compiled executable.
+**NOTE:** `EXIFr` is NOT the same package as `exifr`, which can be found on CRAN. `exifr` relies on either [an external Perl library or compiled executable](https://www.sno.phy.queensu.ca/~phil/exiftool/).
 
 The _primary purpose of this fork_ is to provide access to EXIF read functionality, especially for GPS tags, through the R environment. All of the "baseline" TIFF tags, plus those in the EXIF and GPS tag sets are available to be parsed. Any tags on the list found in the image will be returned by `EXIFr::read_exif_data()` 
 
@@ -105,7 +105,7 @@ Please report any bugs or feature requests to the [GitHub issue tracker](https:/
 
 Any questions about the original [EXIFr](https://github.com/cmartin/EXIFr/) package should be directed to to <charles.martin1@uqtr.ca>
 
-Issues pertaining to maintenance of the fork  [@brownag/EXIFr](https://github.com/brownag/EXIFr/) can contact <andrew.g.brown@usda.gov> through the issue tracker linked above.
+Matters pertaining to maintenance of the @brownag [EXIFr](https://github.com/brownag/EXIFr/) fork can contact <andrew.g.brown@usda.gov> or through the issue tracker linked above.
 
 ## More information 
 
