@@ -1,16 +1,19 @@
 Package: EXIFr
 Type: Package
 Title: Natively read EXIF tags from R
-Version: 0.0.0.9004
-Date: 2015-12-11
-Authors@R: person(c("Charles", "A."), "Martin", email = "charles.martin1@uqtr.ca",
-                  role = c("aut", "cre"))
-Description: This packages is a minimal EXIF reader, entirely built from R code (e.g. no external libraries needed). For now, only the most frequently used EXIF tags are supported.
-License: GPL-3
+Version: 0.0.1.0
+Date: 2019-11-06
+Authors@R: c(person(c("Charles", "A."), "Martin", email = "charles.martin1@uqtr.ca",
+                  role = c("aut", "cre")), person(c("Andrew", "G."), "Brown", email = "andrew.g.brown@usda.gov",
+                  role = c("aut", "ctb")))
+Author: Charles A. Martin [aut, cre], Andrew G. Brown [aut, ctb]
+Maintainer: Andrew G. Brown <andrew.g.brown@usda.gov>
+Description: This packages is a minimal EXIF reader, entirely built from R code (e.g. no external libraries needed).
+License: GPL-3 + file LICENSE
 LazyData: TRUE
 Suggests: testthat
 Imports: stringr
 Depends: R (>= 3.0.2)
-URL: https://github.com/cmartin/EXIFr. DOI:10.5281/zenodo.34691
-BugReports: https://github.com/cmartin/EXIFr/issues
+URL: https://github.com/brownag/EXIFr
+BugReports: https://github.com/brownag/EXIFr/issues
 RoxygenNote: 6.1.1

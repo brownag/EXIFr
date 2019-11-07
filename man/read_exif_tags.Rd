@@ -21,5 +21,5 @@ This value can be converted afterwards with \code{\link{rational_to_numeric}}.
 read_exif_tags(system.file("extdata", "preview.jpg", package = "EXIFr"))[["ExposureTime"]]
 }
 \seealso{
-\code{\link{rational_to_numeric}, \link{rationalDMS_to_numeric}}
+\code{\link{rational_to_numeric}}, \code{\link{rationalDMS_to_decimal}}
 }

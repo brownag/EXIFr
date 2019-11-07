@@ -258,7 +258,7 @@ supported_tags <- function() {
 #' @return A list-based S3 object of class exifData containing the tags and their values.
 #' @example /inst/examples/readexif.Example.R
 #' @export
-#' @seealso \code{\link{rational_to_numeric}, \link{rationalDMS_to_numeric}}
+#' @seealso \code{\link{rational_to_numeric}}, \code{\link{rationalDMS_to_decimal}}
 read_exif_tags <- function(file_path) {
   con <- file(file_path, "rb")
   rm(file_path)
