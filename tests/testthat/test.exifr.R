@@ -1,7 +1,9 @@
 context("Supported tags listing")
 
 expect_true("ApertureValue" %in% supported_tags())
-expect_false("ShutterSpeedValue" %in% supported_tags())
+
+# AGB: ShutterSpeedValue is a legitimate tag to support, and has been included
+#expect_false("ShutterSpeedValue" %in% supported_tags())
 
 context("Basic EXIF extraction")
 
