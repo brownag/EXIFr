@@ -71,8 +71,9 @@ read_exif_tags(image_path)[["ApertureValue"]]
 [1] "43/8"
 ```
 
+OR
+
 ```r
-# or
 rational_to_numeric(read_exif_tags(image_path)[["ApertureValue"]])
 ```
 
@@ -80,6 +81,19 @@ rational_to_numeric(read_exif_tags(image_path)[["ApertureValue"]])
 [1] 5.375
 ```
 
+Another convenience function is for dealing with the 3-part RATIONAL result for GPSLatitude and GPSLongitude. 
+
+```
+# where the input is read with, for instance, 
+#  read_exif_tags(image_path)[["GPSLongitude"]]
+
+# convert degrees, minutes, seconds to decimal degrees
+rationalDMS_to_decimal("120/1 17/1 1571/50")
+```
+
+```
+[1] 120.292061111111
+```
 ## Problems : 
 Please report any bugs or feature requests to the [GitHub issue tracker](https://github.com/brownag/EXIFr/issues).
 

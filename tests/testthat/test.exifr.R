@@ -65,7 +65,13 @@ expect_that(
   rational_to_numeric("3/1"),
   equals(3)
 )
+
 expect_that(
   rational_to_numeric("252606/100000"),
   equals(2.52606)
+)
+
+expect_that(
+  rationalDMS_to_decimal(c("120/1 17/1 1571/50","120/1 17/1 1571/50")),
+  equals(c(120.292061111111, 120.292061111111))
 )

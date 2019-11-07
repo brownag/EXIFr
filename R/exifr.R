@@ -299,6 +299,17 @@ read_exif_tags <- function(file_path) {
 }
 
 #' @export
+rationalDMS_to_decimal <- function(dms, .split = " ") {
+  comp <- lapply(dms, function(d) {
+    unlist(lapply(strsplit(d, fixed = TRUE, .split)[[1]],
+                     EXIFr::rational_to_numeric))
+  })
+  res <- lapply(comp, function(i) { i[[1]] + i[[2]]/60 + i[[3]]/3600 })
+  return(as.numeric(res))
+}
+
+
+#' @export
 print.exifData <- function(x,...) {
   for (name in names(x)) {
     cat(paste(
