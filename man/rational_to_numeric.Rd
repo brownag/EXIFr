@@ -13,7 +13,8 @@ rational_to_numeric(x)
 A vector of floating point values corresponding to \code{x}.
 }
 \description{
-Converts rational numbers from RATIONAL/character string to a floating point representation
+Converts rational number character strings to a floating point
+representation
 }
 \examples{
 rational_to_numeric("1/3200")

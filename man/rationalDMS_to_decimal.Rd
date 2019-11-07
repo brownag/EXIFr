@@ -2,14 +2,15 @@
 % Please edit documentation in R/utils.R
 \name{rationalDMS_to_decimal}
 \alias{rationalDMS_to_decimal}
-\title{Convert rational degrees, minutes, seconds to decimal degrees.}
+\title{Convert rational number degrees, minutes, seconds to decimal degrees.}
 \usage{
-rationalDMS_to_decimal(dms, .split = " ")
+rationalDMS_to_decimal(x, .split = " ")
 }
 \arguments{
-\item{.split}{Delimiter separating the rational numbers (degrees, minutes and seconds in \code{x}).}
+\item{x}{Coordinates strings (rational degrees, minutes and seconds) to convert.}
 
-\item{x}{Coordinates in rational expression of degrees, minutes and seconds to convert; a vector of character strings with each element of \code{x} containing three rational numbers separated by \code{.split}}
+\item{.split}{Delimiter separating the rational numbers (degrees, minutes
+and seconds in \code{x}).}
 }
 \value{
 Coordinates in decimal degrees. A vector of floating point values.
@@ -17,7 +18,7 @@ Coordinates in decimal degrees. A vector of floating point values.
 \description{
 Convert sets of three rational numbers representing degrees,
 minutes, and seconds to floating point values reflecting coordinate in
-decimal degrees.
+decimal degrees. Takes vector of character strings with each element of \code{x} containing three rational numbers separated by \code{.split}
 }
 \examples{
 rationalDMS_to_decimal(c("120/1 17/1 1571/50"))

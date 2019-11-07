@@ -8,7 +8,7 @@ The _primary purpose of this fork_ is to provide access to EXIF read functionali
 
 For some tags, the value is stored as a fraction or `RATIONAL` data type. For example _ExposureTime_ is **"1/3200"** and not **0.0003125**. Likewise for the degree, minute and second components of _GPSLatitude_ and _GPSLongitude_ for georeferenced images. 
 
-See the examples involving `rational_to_decimal()` and `rationalDMS_to_decimal()`, helper functions for dealing with the `RATIONAL` tag type below.
+See the examples involving `rational_to_numeric()` and `rationalDMS_to_decimal()` helper functions for dealing with the `RATIONAL` tag type below.
 
 ## To install this fork: 
 
