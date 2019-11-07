@@ -43,7 +43,11 @@
     tag_name <- .tag_number_to_tag_name(tag_number)
     tag_value <- switch(tag_type,
       # 1 Byte
-      "Byte not implemented"
+      paste(lapply(0:(data_length - 1), function(i) {
+        readBin(all_bytes[TIFF_offset + data_position + i + 1],
+        "raw",
+        size = 1
+      )}), collapse=" ")
     , # 2 ASCII
       readBin(
         all_bytes[(TIFF_offset + data_position + 1):
